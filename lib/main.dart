@@ -1,23 +1,62 @@
-import 'package:app_tia_benta/page/home.page.dart';
-import 'package:device_preview/device_preview.dart';
-import 'package:flutter/foundation.dart';
+import 'package:app_tia_benta/core/app.dart';
 import 'package:flutter/material.dart';
+import 'package:fluro/fluro.dart';
 
 void main() {
-  runApp(DevicePreview(enabled: !kReleaseMode, builder: (context) => MyApp()));
+  FluroRouter.setupRouter();
+  runApp(
+    MaterialApp(
+        title: 'Your website', onGenerateRoute: FluroRouter.router.generator),
+  );
 }
 
-class MyApp extends StatelessWidget {
+class CustomScaffold extends StatelessWidget {
+  final Widget body;
+  CustomScaffold({this.body});
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      locale: DevicePreview.locale(context),
-      builder: DevicePreview.appBuilder,
-      home: HomePage(title: 'Flutter Demo Home Page'),
+    return Scaffold(
+      //your appbar here
+      appBar: AppBar(),
+      //your drawer here
+      drawer: Drawer(),
+      body: body,
+    );
+  }
+}
+
+class FluroRouter {
+  static Router router = Router();
+  static Handler _routeOneHandler = Handler(
+      handlerFunc: (BuildContext context, Map<String, dynamic> params) =>
+          PageOne());
+  static Handler _routeTwoHandler = Handler(
+      handlerFunc: (BuildContext context, Map<String, dynamic> params) =>
+          PageTwo());
+  static void setupRouter() {
+    router.define(
+      '/',
+      handler: _routeOneHandler,
+    );
+    router.define(
+      '/two',
+      handler: _routeTwoHandler,
+    );
+  }
+}
+
+class PageOne extends StatelessWidget {
+  Widget build(BuildContext context) {
+    return CustomScaffold(
+      body: Container(child: Text('Page 1')),
+    );
+  }
+}
+
+class PageTwo extends StatelessWidget {
+  Widget build(BuildContext context) {
+    return CustomScaffold(
+      body: Container(child: Text('Page 2')),
     );
   }
 }
