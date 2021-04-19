@@ -1,31 +1,19 @@
-import 'package:app_tia_benta/page/client.page.dart';
+import 'package:app_tia_benta/page/client/client.routing.dart';
 import 'package:app_tia_benta/page/home.page.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
-class Routes {
-  Routes._();
+class Routes extends Module {
+  // Provide a list of dependencies to inject into your project
+  @override
+  final List<Bind> binds = [];
 
-  static const home = '/';
-  static const client = '/client';
-
-  static MaterialPageRoute generateRoute(RouteSettings routeSettings) {
-    return MaterialPageRoute(
-        settings: routeSettings,
-        builder: (context) =>
-            _buildPage(routeSettings.name, routeSettings.arguments));
-  }
-
-  static Widget _buildPage(String name, Object arguments) {
-    // ignore: unused_local_variable
-    Map<String, dynamic> argumentsMap =
-        arguments is Map<String, dynamic> ? arguments : Map();
-    switch (name) {
-      case home:
-        return HomePage(title: 'Teste de Rota');
-      case client:
-        return ClientPage(title: 'Teste Client');
-      default:
-        return Container();
-    }
-  }
+  // Provide all the routes for your module
+  @override
+  final List<ModularRoute> routes = [
+    ChildRoute('/',
+        child: (_, __) => HomePage(
+              title: 'Pagina principal',
+            )),
+    ...ClientRouting().routes,
+  ];
 }
