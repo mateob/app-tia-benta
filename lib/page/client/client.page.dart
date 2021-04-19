@@ -28,9 +28,7 @@ class _ClientPageState extends BaseCrud<ClientPage> {
   }
 
   @override
-  AppBar appBar() {
-    return AppBar(
-      title: Text('Cliente'),
-    );
+  Text appBarTitle() {
+    return Text('Cliente');
   }
 }
