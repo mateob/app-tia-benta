@@ -1,6 +1,7 @@
 import 'package:app_tia_benta/core/menu.dart';
 import 'package:app_tia_benta/shared/base/widgets/app_bar/mobile_app_bar.dart';
 import 'package:app_tia_benta/shared/base/widgets/app_bar/web_app_bar.dart';
+import 'package:app_tia_benta/shared/breakpoints.dart';
 import 'package:flutter/material.dart';
 
 abstract class BaseCrud<T extends StatefulWidget> extends State<T> {
@@ -36,7 +37,7 @@ abstract class BaseCrud<T extends StatefulWidget> extends State<T> {
   }
 
   Widget loadAppBar(Text titleBar, BoxConstraints constraints) {
-    return constraints.maxWidth < 800
+    return constraints.maxWidth < mobileBreakpoint
         ? PreferredSize(
             child: MobileAppBar(titleBar),
             preferredSize: Size(double.infinity, 56))

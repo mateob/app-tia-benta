@@ -1,3 +1,4 @@
+import 'package:app_tia_benta/shared/base/widgets/app_bar/web_app_bar_responsive_content.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -15,11 +16,32 @@ class WebAppBar extends StatelessWidget {
           const SizedBox(
             width: 32,
           ),
+          WebAppBarResponsiveContent(),
           IconButton(icon: Icon(Icons.shopping_cart), onPressed: () {}),
           const SizedBox(
             width: 24,
           ),
-          OutlineButton(onPressed: () {})
+          SizedBox(
+            height: 38,
+            child: OutlineButton(
+              child: Text('Fazer Login'),
+              textColor: Colors.white,
+              borderSide: BorderSide(color: Colors.white, width: 2),
+              onPressed: () {},
+            ),
+          ),
+          const SizedBox(
+            width: 8,
+          ),
+          SizedBox(
+            height: 40,
+            child: RaisedButton(
+              child: Text('Cadastre-se'),
+              color: Colors.white,
+              textColor: Colors.black,
+              onPressed: () {},
+            ),
+          )
         ],
       ),
       toolbarHeight: 72,
