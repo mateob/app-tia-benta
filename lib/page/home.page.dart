@@ -1,4 +1,6 @@
 import 'package:app_tia_benta/core/menu.dart';
+import 'package:app_tia_benta/shared/base/widgets/app_bar/load_app_bar.dart';
+import 'package:app_tia_benta/shared/base/widgets/sections/top_section.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -20,30 +22,36 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      drawer: Menu(),
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'Você clicou no botão tantas vezes:',
+    return LayoutBuilder(builder: (context, constraints) {
+      return Scaffold(
+        backgroundColor: Colors.black,
+        drawer: Menu(),
+        appBar:
+            LoadAppBar(titleBar: Text(widget.title), constraints: constraints),
+        body: Align(
+          alignment: Alignment.topCenter,
+          child: ConstrainedBox(
+            constraints: BoxConstraints(maxWidth: 1400),
+            child: ListView(
+              children: [
+                TopSection(),
+                Text(
+                  'Você clicou no botão tantas vezes:',
+                ),
+                Text(
+                  '$_counter',
+                  style: Theme.of(context).textTheme.headline4,
+                ),
+              ],
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
+          ),
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ),
-    );
+        floatingActionButton: FloatingActionButton(
+          onPressed: _incrementCounter,
+          tooltip: 'Increment',
+          child: Icon(Icons.add),
+        ),
+      );
+    });
   }
 }

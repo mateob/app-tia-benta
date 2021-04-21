@@ -11,13 +11,15 @@ class App extends StatelessWidget {
         title: 'Tia Benta',
         theme: ThemeData(primarySwatch: Colors.blue),
         home: Scaffold(
-          drawer: Menu(),
-          appBar: AppBar(
-            title: Text('teste'),
-          ),
-          body: Container(
-            color: Colors.amber,
-          ),
-        )).modular();
+            drawer: Menu(),
+            appBar: AppBar(
+              title: Text('teste'),
+            ),
+            body: Align(
+                alignment: Alignment.topCenter,
+                child: ConstrainedBox(
+                  constraints: BoxConstraints(maxWidth: 1400),
+                  child: ListView(),
+                )))).modular();
   }
 }

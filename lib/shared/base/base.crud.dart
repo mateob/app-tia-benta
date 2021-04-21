@@ -1,7 +1,5 @@
 import 'package:app_tia_benta/core/menu.dart';
-import 'package:app_tia_benta/shared/base/widgets/app_bar/mobile_app_bar.dart';
-import 'package:app_tia_benta/shared/base/widgets/app_bar/web_app_bar.dart';
-import 'package:app_tia_benta/shared/breakpoints.dart';
+import 'package:app_tia_benta/shared/base/widgets/app_bar/load_app_bar.dart';
 import 'package:flutter/material.dart';
 
 abstract class BaseCrud<T extends StatefulWidget> extends State<T> {
@@ -22,28 +20,20 @@ abstract class BaseCrud<T extends StatefulWidget> extends State<T> {
     return LayoutBuilder(builder: (context, constraints) {
       return Scaffold(
         drawer: Menu(),
-        appBar: loadAppBar(appBarTitle(), constraints),
+        appBar: LoadAppBar(titleBar: appBarTitle(), constraints: constraints),
         bottomNavigationBar: BottomNavigationBar(
           items: bottonNavigationBarItems(),
           currentIndex: _selectedIndex,
           selectedItemColor: Colors.blue[400],
           onTap: _onItemTapped,
         ),
-        body: Center(
-          child: widgetList().elementAt(_selectedIndex),
-        ),
+        body: Align(
+            alignment: Alignment.topCenter,
+            child: ConstrainedBox(
+              constraints: BoxConstraints(maxWidth: 1400),
+              child: widgetList().elementAt(_selectedIndex),
+            )),
       );
     });
-  }
-
-  Widget loadAppBar(Text titleBar, BoxConstraints constraints) {
-    return constraints.maxWidth < mobileBreakpoint
-        ? PreferredSize(
-            child: MobileAppBar(titleBar),
-            preferredSize: Size(double.infinity, 56))
-        : PreferredSize(
-            child: WebAppBar(titleBar),
-            preferredSize: Size(double.infinity, 72),
-          );
   }
 }
