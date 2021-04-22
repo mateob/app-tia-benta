@@ -9,7 +9,7 @@ class TopSection extends StatelessWidget {
       final maxWidth = constraints.maxWidth;
 
       // Web
-      if (maxWidth >= 1200) {
+      if (maxWidth >= tabletBreakpoint) {
         return panelWeb();
       }
       // Tablet

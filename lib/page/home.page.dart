@@ -1,5 +1,7 @@
 import 'package:app_tia_benta/core/menu.dart';
 import 'package:app_tia_benta/shared/base/widgets/app_bar/load_app_bar.dart';
+import 'package:app_tia_benta/shared/base/widgets/sections/advanced_section.dart';
+import 'package:app_tia_benta/shared/base/widgets/sections/curses_section.dart';
 import 'package:app_tia_benta/shared/base/widgets/sections/top_section.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -12,14 +14,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constraints) {
@@ -35,21 +29,11 @@ class _HomePageState extends State<HomePage> {
             child: ListView(
               children: [
                 TopSection(),
-                Text(
-                  'Você clicou no botão tantas vezes:',
-                ),
-                Text(
-                  '$_counter',
-                  style: Theme.of(context).textTheme.headline4,
-                ),
+                AdvancedSection(),
+                CursesSection(),
               ],
             ),
           ),
-        ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: _incrementCounter,
-          tooltip: 'Increment',
-          child: Icon(Icons.add),
         ),
       );
     });
