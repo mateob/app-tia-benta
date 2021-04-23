@@ -29,6 +29,9 @@ dependencies:
   cupertino_icons: ^1.0.2
   i18n_extension: ^3.0.0
   flutter_modular: any
+  http: ^0.13.1
+  flutter_dotenv: any
+  logger: any  #for logging purpose
 
 dev_dependencies:
   flutter_test:

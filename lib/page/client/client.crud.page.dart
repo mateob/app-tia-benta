@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 class ClientCRUDPage extends StatefulWidget {
   ClientCRUDPage({Key key, this.id}) : super(key: key);
+
   final String id;
   @override
   _ClientCRUDPage createState() => _ClientCRUDPage();
